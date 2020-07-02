@@ -1,4 +1,4 @@
 *.pt
 *.txt
 *.pyc
-!./requirements.txt
+!/requirements.txt
