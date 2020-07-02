@@ -2,3 +2,7 @@
 *.txt
 *.pyc
 !/requirements.txt
+/data/
+!/data/penn/train.txt
+!/data/penn/valid.txt
+!/data/penn/test.txt
