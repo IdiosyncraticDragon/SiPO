@@ -22,6 +22,12 @@ $> pip install -i  https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
 4. The environment is installed.
 
+***OR***
+
+you can run the `setup.sh`.
+
+
+
 ### build by docker
 
 **To Be Finished.**
@@ -44,10 +50,38 @@ $> pip install -i  https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
    - raw data download: http://statmt.org/wmt14
 
-   - Pre-processed data used in this project: 
+   - Pre-processed data used in this project:  [Web URL](https://pan.baidu.com/s/1tjknRHSZGTu4TiH5wrsAGw)
 
-   **To Be Finished.**
+   The structure of folder should be:
 
+   ```
+   /SiPO
+   
+   |--/SiPO/data
+   
+   |----/SiPO/data
+   
+   |------/SiPO/data/penn
+   
+   |--------/SiPO/data/penn/train.txt
+   
+   |--------/SiPO/data/penn/valid.txt
+   
+   |--------/SiPO/data/penn/test.txt
+   
+   |----/SiPO/wmt14
+   
+   |------/SiPO/wmt14/len50_pywmt14.train.pt
+   
+   |------/SiPO/wmt14/len50_pywmt14.valid.pt
+   
+   |------/SiPO/wmt14/len50_pywmt14.vocab.pt
+   
+   |------/SiPO/wmt14/en-test.txt
+   
+   |------/SiPO/wmt14/de-test.txt
+   ```
+   
    
 
 ## Model download
@@ -62,6 +96,8 @@ $> pip install -i  https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
 **Note:** put the downloaded models into the folder `model` under this project.
 
+
+
 ### Inspect the pruned models
 
 **Note:** The pruning is implemented by setting the pruned connections' weight value to zero, so that the direct storage of the pruned models is the same as the original models. In this section, the user can use provided script to find out how many connections are pruned in the pruned model and check the performances of the pruned model on the dataset.
@@ -70,14 +106,14 @@ $> pip install -i  https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
 ```bash
 $> cd utils
-$> chmod +x run_scripts.sh
-$> ./run_scripts.sh
+$> chmod +x lm_run_scripts.sh
+$> ./lm_run_scripts.sh
 ```
 
 If the environment is set successfully, the data and models are download and placed to the `data` folder and `model` folder, the results will be:
 
 ```bash
-$> ./run_scripts.sh
+$> ./lm_run_scripts.sh
 ========Language Model==========
 4653200 paramters in totall
 Valid ppl: 120.40824300174098
@@ -104,7 +140,68 @@ The "========Language Model==========" is the results split bar, which indicate 
 The first "========Language Model==========" indicates the evaluation of the original LM model. The following results indicate the evaluation of the pruned LM model.
 
 - RNNSearch:
+
+```bash
+$> cd utils
+$> chmod +x rnnsearch_run_scripts.sh
+$> ./rnnsearch_run_scripts.sh
+```
+
+If the environment is set successfully, the data and models are download and placed to the `data` folder and `model` folder, the results will be:
+
+```bash
+========NMT Model: RNNSearch==========
+Loading model parameters.
+Loading model parameters.
+The original model inspection
+137804724 parameters in total.
+validatoin => acc (55.9544), ppl (9.1475)
+testing => bleu (18.2537), ppl (1.6292)
+========NMT Model: RNNSearch==========
+The pruned model inspection
+Loading model parameters.
+Loading model parameters.
+137804724 parameters in total.
+116952767.0 parameters are pruned.
+sparsity 84.86847446536014%
+validatoin => acc (55.9262), ppl (9.3694)
+testing => bleu (17.9691), ppl (1.6360)
+
+```
+
+
+
 - LuongNet:
+
+```bash
+$> cd utils
+$> chmod +x luongnet_run_scripts.sh
+$> ./luongnet_run_scripts.sh
+```
+
+If the environment is set successfully, the data and models are download and placed to the `data` folder and `model` folder, the results will be:
+
+```bash
+========MNT Model: LuongNet==========
+Loading model parameters.
+Loading model parameters.
+The original model inspection
+221124004 parameters in total.
+validatoin => acc (58.3489), ppl (7.5092)
+testing => bleu (19.4961), ppl (1.5681)
+========MNT Model: LuongNet==========
+The pruned model inspection
+Loading model parameters.
+Loading model parameters.
+221124004 parameters in total.
+191360406.0 parameters are pruned.
+sparsity 86.5398611360167%
+validatoin => acc (58.3312), ppl (7.6990)
+testing => bleu (19.2241), ppl (1.5567)
+
+```
+
+
 
 ## Experiments for Language model
 
