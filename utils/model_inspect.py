@@ -1,13 +1,19 @@
 import sys
+sys.path.insert(0, '../')
 import model
 import numpy as np
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
+from torch import cuda
 import time
 import math
 import masked_networkLM
+from masked_network import MaskedModel
+from onmt.Utils import use_gpu
+import onmt
 import data
+import bleu
 
 def lm_data_load(data_path, batch_size = 10):
    corpus = data.Corpus(data_path)
@@ -121,3 +127,168 @@ def lm_evaluate(model, corpus, _data, batch_size = 10, is_cuda=True):
       model.cuda()
    loss, acc = evaluate(model, _data, corpus)
    return math.exp(loss), acc
+
+def translate_opt_initialize(trans_p, trans_dum_p, data_path, model_path, GPU_ID):
+   translate_opt = torch.load(trans_p)
+   translate_dummy_opt = torch.load(trans_dum_p)
+   #   translate
+   translate_opt.model = model_path
+   #   dataset for pruning
+   translate_opt.src = '{}/en-test.txt'.format(data_path)
+   translate_opt.tgt = '{}/de-test.txt'.format(data_path)
+   translate_opt.start_epoch = 2
+   translate_opt.model = model_path
+   translate_opt.gpu = GPU_ID
+   return translate_opt, translate_dummy_opt
+
+def init_translate_model(opt, dummy_opt):
+    return onmt.Translator(opt, dummy_opt.__dict__)
+
+#  evaluate the accuracy of a network with a set of crates respect to a original accuracy
+class Statistics(object):
+    """
+    Train/validate loss statistics.
+    """
+    def __init__(self, loss=0., n_words=0., n_correct=0.):
+        self.loss = loss
+        self.n_words = n_words
+        self.n_correct = n_correct
+        self.n_src_words = 0
+        self.start_time = time.time()
+
+    def update(self, stat):
+        self.loss += stat.loss
+        self.n_words += stat.n_words
+        self.n_correct += stat.n_correct
+
+    def accuracy(self):
+        return 100 * (self.n_correct / self.n_words)
+
+    def ppl(self):
+        return math.exp(min(self.loss / self.n_words, 100))
+
+    def elapsed_time(self):
+        return time.time() - self.start_time
+
+    def output(self, epoch, batch, n_batches, start):
+        t = self.elapsed_time()
+        print(("Epoch %2d, %5d/%5d; acc: %6.2f; ppl: %6.2f; " +
+               "%3.0f src tok/s; %3.0f tgt tok/s; %6.0f s elapsed") %
+              (epoch, batch,  n_batches,
+               self.accuracy(),
+               self.ppl(),
+               self.n_src_words / (t + 1e-5),
+               self.n_words / (t + 1e-5),
+               time.time() - start))
+        sys.stdout.flush()
+
+    def log(self, prefix, experiment, lr):
+        t = self.elapsed_time()
+        experiment.add_scalar_value(prefix + "_ppl", self.ppl())
+        experiment.add_scalar_value(prefix + "_accuracy", self.accuracy())
+        experiment.add_scalar_value(prefix + "_tgtper",  self.n_words / t)
+        experiment.add_scalar_value(prefix + "_lr", lr)
+
+def make_valid_data_iter(valid_data, batch_size, gpu_id=None):
+    """
+    This returns user-defined validate data iterator for the trainer
+    to iterate over during each validate epoch. We implement simple
+    ordered iterator strategy here, but more sophisticated strategy
+    is ok too.
+    """
+    return onmt.IO.OrderedIterator(
+                dataset=valid_data, batch_size= batch_size,
+                device= gpu_id if gpu_id is not None else GPU_ID,
+                train=False, sort=True)
+
+def make_loss_compute(model, tgt_vocab, dataset, gpu_id=None, copy_attn=False, copy_attn_force=False):
+    """
+    This returns user-defined LossCompute object, which is used to
+    compute loss in train/validate process. You can implement your
+    own *LossCompute class, by subclassing LossComputeBase.
+    """
+    if copy_attn:
+        compute = onmt.modules.CopyGeneratorLossCompute(
+            model.generator, tgt_vocab, dataset, copy_attn_force)
+    else:
+        compute = onmt.Loss.NMTLossCompute(model.generator, tgt_vocab)
+
+    if gpu_id == None:
+      gpu_id = cuda.current_device()
+    compute.cuda(gpu_id)
+
+    return compute
+
+def evaluate(thenet, valid_data, fields, batch_size = 64, gpu_id=None):
+   gpu_used = gpu_id if gpu_id is not None else torch.cuda.current_device()
+   valid_iter = make_valid_data_iter(valid_data, batch_size, gpu_used)
+   valid_loss = make_loss_compute(thenet, fields["tgt"].vocab, valid_data, gpu_used)
+
+   stats = Statistics()
+
+   for batch in valid_iter:
+      _, src_lengths = batch.src
+      src = onmt.IO.make_features(batch, 'src')
+      tgt = onmt.IO.make_features(batch, 'tgt')
+
+      # F-prop through the model.
+      outputs, attns, _ = thenet(src, tgt, src_lengths)
+
+      # Compute loss.
+      batch_stats = valid_loss.monolithic_compute_loss(
+      batch, outputs, attns)
+      # Update statistics.
+      stats.update(batch_stats)
+
+   return torch.FloatTensor([stats.ppl(), stats.accuracy()])# the last two 0.0 reserved for rank number, and sparsity
+
+def evaluate_trans(thenet, references, vali_data, vali_raw_data):
+  hypothesis = []
+  score_total = 0.
+  num_word_total = 0
+  for batch in vali_data:
+     pred_batch, gold_batch, pred_scores, gold_scores, attn, src = thenet.translate(batch, vali_raw_data)
+     score_total += sum([score[0] for score in pred_scores])
+     num_word_total += sum(len(x) for x in batch.tgt[1:]) 
+     hypothesis.extend([' '.join(x[0]) for x in pred_batch])
+  ppl = math.exp(-score_total/num_word_total)
+  bleu_score = bleu.corpus_bleu(hypothesis, references)[0][0] #[final, n-gram1,n-gram2,...], [bp, ...]
+  #print('BLEU: {}'.format(bleu_score))
+  # training/validation 阶段的ppl计算在onmt/Trainer.py的Statisci()中；translating的ppl计算在 translate.py中的reprot_score函数里
+  #print('PPL: {}'.format(ppl))
+
+  return torch.FloatTensor([ppl, bleu_score, 0.0])# the last reserved for rank number
+
+def nmt_test(model_path_pruned, DATA_PATH, GPU_ID, translate_param1_path, translate_param2_path, group_dict):
+     cuda.set_device(GPU_ID)
+     valid_data = torch.load(DATA_PATH + 'len50_pywmt14.valid.pt')
+     fields = onmt.IO.load_fields(torch.load(DATA_PATH + 'len50_pywmt14.vocab.pt'))
+     valid_data.fields = fields 
+     checkpoint = torch.load(model_path_pruned, map_location=lambda storage, loc: storage)
+     model_opt = checkpoint['opt']
+     with cuda.device(GPU_ID):
+         ref_model = onmt.ModelConstructor.make_base_model(model_opt, fields, True, checkpoint)
+         ref_model.eval()
+         ref_model.generator.eval()
+         masked_model = MaskedModel(ref_model, group_dict, cuda.current_device(), cuda.current_device()) # ref_model is at current_device, no copy will happen
+     translate_opt, translate_dummy_opt = translate_opt_initialize(translate_param1_path, translate_param2_path, DATA_PATH, model_path_pruned, GPU_ID)
+     translator = init_translate_model(translate_opt, translate_dummy_opt)
+     del translator.model
+     translator.model = ref_model
+     tt=open(translate_opt.tgt, 'r')
+     references = [[t] for t in tt]
+
+     translate_data = onmt.IO.ONMTDataset(
+       translate_opt.src, translate_opt.tgt, fields,
+       use_filter_pred=False)
+     prune_data = onmt.IO.OrderedIterator(
+       dataset=translate_data, device=GPU_ID,
+       batch_size=1, train=False, sort=False,
+       shuffle=False)
+
+     sparsity = masked_model.get_sparsity()
+     total_param = masked_model.total_parameters_of_pretrain()
+
+     tmp_fit1 = evaluate(masked_model, valid_data, fields)
+     tmp_fit2 = evaluate_trans(translator, references, prune_data, translate_data)
+     return total_param, sparsity, tmp_fit1, tmp_fit2
