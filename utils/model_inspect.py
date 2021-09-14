@@ -121,11 +121,27 @@ def set_env(seed, is_cuda=True):
        else:
            torch.cuda.manual_seed(seed)
 
-def lm_evaluate(model, corpus, _data, batch_size = 10, is_cuda=True):
+def lm_evaluate(model, corpus, data_source, batch_size = 10, is_cuda=True, bptt=35):
+   criterion = nn.CrossEntropyLoss()
+   model.eval()
+   total_loss = 0
+   total_acc = 0
    ntokens = len(corpus.dictionary)
    if is_cuda:
       model.cuda()
-   loss, acc = evaluate(model, _data, corpus)
+   hidden = model.init_hidden(batch_size)
+   for i in range(0, data_source.size(0) - 1, bptt):
+        data, targets = get_batch(data_source, i, evaluation=True)
+        output, hidden = model(data, hidden)
+        #pdb.set_trace()
+        output_flat = output.view(-1, ntokens)
+        _, preds = torch.max(output_flat, 1)
+        total_acc += (preds == targets).data.cpu().sum()
+        total_loss += len(data) * criterion(output_flat, targets).data
+        hidden = repackage_hidden(hidden)
+   acc = total_acc*100. / data_source.nelement()
+   loss = total_loss[0] / len(data_source)
+   #loss, acc = evaluate(model, _data, corpus)
    return math.exp(loss), acc
 
 def translate_opt_initialize(trans_p, trans_dum_p, data_path, model_path, GPU_ID):
@@ -199,7 +215,7 @@ def make_valid_data_iter(valid_data, batch_size, gpu_id=None):
     return onmt.IO.OrderedIterator(
                 dataset=valid_data, batch_size= batch_size,
                 device= gpu_id if gpu_id is not None else GPU_ID,
-                train=False, sort=True)
+                train=False)
 
 def make_loss_compute(model, tgt_vocab, dataset, gpu_id=None, copy_attn=False, copy_attn_force=False):
     """
