@@ -9,10 +9,10 @@ Chatzikonstantinou, C., Konstantinidis, D., Dimitropoulos, K., & Daras, P. (2021
 #### Related files
 
 ```python
-lm_lds_oneshot.py			# oneshot pruning for languages model
-lm_lds_iterative.py		# iterative pruning for languages model
-nmt_lds_oneshot.py		# oneshot pruning for opennmt model
-nmt_lds_iterative.py	# iterative pruning for opennmt model
+lm_lds_oneshot.py # oneshot pruning for languages model
+lm_lds_iterative.py # iterative pruning for languages model
+nmt_lds_oneshot.py  # oneshot pruning for opennmt model
+nmt_lds_iterative.py  # iterative pruning for opennmt model
 ```
 
 
