@@ -1,0 +1,907 @@
+python: can't open file 'preprocess.py': [Errno 2] No such file or directory
+/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/semaphore_tracker.py:129: UserWarning: semaphore_tracker: There appear to be 1 leaked semaphores to clean up at shutdown
+  len(cache))
+Traceback (most recent call last):
+  File "zh_bahdanau_prune.py", line 504, in <module>
+    main()
+  File "zh_bahdanau_prune.py", line 434, in main
+    train = torch.load(train_opt.data + '.train.pt')
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 261, in load
+KeyboardInterrupt
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+{'encoder.embeddings.make_embedding.emb_luts.0.weight': 0, 'encoder.rnn.weight_ih_l0': 1, 'encoder.rnn.weight_hh_l0': 2, 'encoder.rnn.bias_ih_l0': 3, 'encoder.rnn.bias_hh_l0': 4, 'encoder.rnn.weight_ih_l0_reverse': 5, 'encoder.rnn.weight_hh_l0_reverse': 6, 'encoder.rnn.bias_ih_l0_reverse': 7, 'encoder.rnn.bias_hh_l0_reverse': 8, 'decoder.embeddings.make_embedding.emb_luts.0.weight': 9, 'decoder.rnn.layers.0.weight_ih': 10, 'decoder.rnn.layers.0.weight_hh': 11, 'decoder.rnn.layers.0.bias_ih': 12, 'decoder.rnn.layers.0.bias_hh': 13, 'decoder.attn.linear_context.weight': 14, 'decoder.attn.linear_query.weight': 15, 'decoder.attn.linear_query.bias': 16, 'decoder.attn.v.weight': 17, 'decoder.attn.linear_out.weight': 18, 'decoder.attn.linear_out.bias': 19, 'generator.0.weight': 20, 'generator.0.bias': 21}
+[18601239, 929999, 749999, 1499, 1499, 929999, 749999, 1499, 1499, 18602479, 4859999, 2999999, 2999, 2999, 999999, 999999, 999, 999, 1999999, 999, 30003999, 30003]
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+{'encoder.embeddings.make_embedding.emb_luts.0.weight': 0, 'encoder.rnn.weight_ih_l0': 1, 'encoder.rnn.weight_hh_l0': 2, 'encoder.rnn.bias_ih_l0': 3, 'encoder.rnn.bias_hh_l0': 4, 'encoder.rnn.weight_ih_l0_reverse': 5, 'encoder.rnn.weight_hh_l0_reverse': 6, 'encoder.rnn.bias_ih_l0_reverse': 7, 'encoder.rnn.bias_hh_l0_reverse': 8, 'decoder.embeddings.make_embedding.emb_luts.0.weight': 9, 'decoder.rnn.layers.0.weight_ih': 10, 'decoder.rnn.layers.0.weight_hh': 11, 'decoder.rnn.layers.0.bias_ih': 12, 'decoder.rnn.layers.0.bias_hh': 13, 'decoder.attn.linear_context.weight': 14, 'decoder.attn.linear_query.weight': 15, 'decoder.attn.linear_query.bias': 16, 'decoder.attn.v.weight': 17, 'decoder.attn.linear_out.weight': 18, 'decoder.attn.linear_out.bias': 19, 'generator.0.weight': 20, 'generator.0.bias': 21}
+[18601239, 929999, 749999, 1499, 1499, 929999, 749999, 1499, 1499, 18602479, 4859999, 2999999, 2999, 2999, 999999, 999999, 999, 999, 1999999, 999, 30003999, 30003]
+***************NCS initialization***************
+Traceback (most recent call last):
+  File "zh_bahdanau_prune.py", line 504, in <module>
+    main()
+  File "zh_bahdanau_prune.py", line 477, in main
+    best_found = NCS_MP(init_threshold, 500, checkpoint1, train_fields, train_opt, ref_model1, [ref_model_dict1,ref_model_dict2], [sorted_weights1,sorted_weights2], param_name, train, valid, 5)
+  File "zh_bahdanau_prune.py", line 388, in NCS_MP
+    es.set_initFitness(es.popsize*[sum(crates)+len(creates)]) # assume the inital crates store the size of each tensor
+NameError: name 'creates' is not defined
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+{'encoder.embeddings.make_embedding.emb_luts.0.weight': 0, 'encoder.rnn.weight_ih_l0': 1, 'encoder.rnn.weight_hh_l0': 2, 'encoder.rnn.bias_ih_l0': 3, 'encoder.rnn.bias_hh_l0': 4, 'encoder.rnn.weight_ih_l0_reverse': 5, 'encoder.rnn.weight_hh_l0_reverse': 6, 'encoder.rnn.bias_ih_l0_reverse': 7, 'encoder.rnn.bias_hh_l0_reverse': 8, 'decoder.embeddings.make_embedding.emb_luts.0.weight': 9, 'decoder.rnn.layers.0.weight_ih': 10, 'decoder.rnn.layers.0.weight_hh': 11, 'decoder.rnn.layers.0.bias_ih': 12, 'decoder.rnn.layers.0.bias_hh': 13, 'decoder.attn.linear_context.weight': 14, 'decoder.attn.linear_query.weight': 15, 'decoder.attn.linear_query.bias': 16, 'decoder.attn.v.weight': 17, 'decoder.attn.linear_out.weight': 18, 'decoder.attn.linear_out.bias': 19, 'generator.0.weight': 20, 'generator.0.bias': 21}
+[18601239, 929999, 749999, 1499, 1499, 929999, 749999, 1499, 1499, 18602479, 4859999, 2999999, 2999, 2999, 999999, 999999, 999, 999, 1999999, 999, 30003999, 30003]
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+{'encoder.embeddings.make_embedding.emb_luts.0.weight': 0, 'encoder.rnn.weight_ih_l0': 1, 'encoder.rnn.weight_hh_l0': 2, 'encoder.rnn.bias_ih_l0': 3, 'encoder.rnn.bias_hh_l0': 4, 'encoder.rnn.weight_ih_l0_reverse': 5, 'encoder.rnn.weight_hh_l0_reverse': 6, 'encoder.rnn.bias_ih_l0_reverse': 7, 'encoder.rnn.bias_hh_l0_reverse': 8, 'decoder.embeddings.make_embedding.emb_luts.0.weight': 9, 'decoder.rnn.layers.0.weight_ih': 10, 'decoder.rnn.layers.0.weight_hh': 11, 'decoder.rnn.layers.0.bias_ih': 12, 'decoder.rnn.layers.0.bias_hh': 13, 'decoder.attn.linear_context.weight': 14, 'decoder.attn.linear_query.weight': 15, 'decoder.attn.linear_query.bias': 16, 'decoder.attn.v.weight': 17, 'decoder.attn.linear_out.weight': 18, 'decoder.attn.linear_out.bias': 19, 'generator.0.weight': 20, 'generator.0.bias': 21}
+[18601239, 929999, 749999, 1499, 1499, 929999, 749999, 1499, 1499, 18602479, 4859999, 2999999, 2999, 2999, 999999, 999999, 999, 999, 1999999, 999, 30003999, 30003]
+***************NCS initialization***************
+fit:
+ 338.3607
+  20.5087
+   0.0000
+[torch.FloatTensor of size 3]
+
+***************NCS initialization***************
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+/home/lgy/gitProject/OpenNMT-py/workspace/ncs.py:145: RuntimeWarning: invalid value encountered in true_divide
+  normTrialFit = tempTrialFit / (tempFit + tempTrialFit)
+/home/lgy/gitProject/OpenNMT-py/workspace/ncs.py:172: RuntimeWarning: invalid value encountered in greater
+  pos = np.where(((self.lambda_ * normTrialCorr) > normTrialFit)*(fitSet < 0))
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Loading vocab from checkpoint at /home/lgy/deepModels/torch_models/opennmt-py/zh_bahdanau_acc_20.51_ppl_338.36_e1.pt.
+ * vocabulary size. source = 30002; target = 30004
+Building model...
+Loading model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30002, 620, padding_idx=1)
+        )
+      )
+    )
+    (rnn): GRU(620, 500, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(30004, 620, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): GRUCell(1620, 1000)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_context): BottleLinear(in_features=1000, out_features=1000)
+      (linear_query): Linear(in_features=1000, out_features=1000)
+      (v): BottleLinear(in_features=1000, out_features=1)
+      (linear_out): Linear(in_features=2000, out_features=1000)
+      (sm): Softmax()
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=1000, out_features=30004)
+    (1): LogSoftmax()
+  )
+)
+/home/lgy/gitProject/OpenNMT-py/onmt/Models.py:96: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greately increasing memory usage. To compact weights again call flatten_parameters().
+  outputs, hidden_t = self.rnn(packed_emb, hidden)
+/home/lgy/gitProject/OpenNMT-py/onmt/modules/GlobalAttention.py:150: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  align_vectors = self.sm(align.view(batch*targetL, sourceL))
+/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/nn/modules/container.py:67: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  input = module(input)
+Process Process-13:
+Traceback (most recent call last):
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 346, in init_processes
+    fn(rank, size, param_name, prune_threshold, model_dict, sorted_weights, results)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 362, in prune_and_eval
+    local_fields = load_fields(_train, _valid, local_checkpoint, local_opt)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 47, in load_fields
+    torch.load(opt.data + '.vocab.pt'))
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 261, in load
+    return _load(f, map_location, pickle_module)
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 409, in _load
+    result = unpickler.load()
+  File "/home/lgy/installed/anacoda3/lib/python3.6/collections/__init__.py", line 517, in __init__
+    def __init__(*args, **kwds):
+KeyboardInterrupt
+Process Process-15:
+Traceback (most recent call last):
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 346, in init_processes
+    fn(rank, size, param_name, prune_threshold, model_dict, sorted_weights, results)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 361, in prune_and_eval
+    _valid = torch.load(TRAIN_DATA + '.valid.pt')
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 261, in load
+    return _load(f, map_location, pickle_module)
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 409, in _load
+    result = unpickler.load()
+  File "/home/lgy/gitProject/OpenNMT-py/onmt/IO.py", line 383, in __setstate__
+    def __setstate__(self, d):
+KeyboardInterrupt
+Process Process-14:
+Traceback (most recent call last):
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 346, in init_processes
+    fn(rank, size, param_name, prune_threshold, model_dict, sorted_weights, results)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 361, in prune_and_eval
+    _valid = torch.load(TRAIN_DATA + '.valid.pt')
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 261, in load
+    return _load(f, map_location, pickle_module)
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 409, in _load
+    result = unpickler.load()
+  File "/home/lgy/gitProject/OpenNMT-py/onmt/IO.py", line 383, in __setstate__
+    def __setstate__(self, d):
+KeyboardInterrupt
+Process Process-16:
+Traceback (most recent call last):
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 346, in init_processes
+    fn(rank, size, param_name, prune_threshold, model_dict, sorted_weights, results)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 362, in prune_and_eval
+    local_fields = load_fields(_train, _valid, local_checkpoint, local_opt)
+  File "/home/lgy/gitProject/OpenNMT-py/workspace/zh_bahdanau_prune.py", line 47, in load_fields
+    torch.load(opt.data + '.vocab.pt'))
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 261, in load
+    return _load(f, map_location, pickle_module)
+  File "/home/lgy/installed/anacoda3/lib/python3.6/site-packages/torch/serialization.py", line 409, in _load
+    result = unpickler.load()
+  File "/home/lgy/installed/anacoda3/lib/python3.6/collections/__init__.py", line 517, in __init__
+    def __init__(*args, **kwds):
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "zh_bahdanau_prune.py", line 504, in <module>
+    main()
+  File "zh_bahdanau_prune.py", line 477, in main
+    best_found = NCS_MP(init_threshold, 500, checkpoint1, train_fields, train_opt, ref_model1, [ref_model_dict1,ref_model_dict2], [sorted_weights1,sorted_weights2], param_name, train, valid, 5)
+  File "zh_bahdanau_prune.py", line 409, in NCS_MP
+    p.join()
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/process.py", line 124, in join
+    res = self._popen.wait(timeout)
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/popen_fork.py", line 51, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/popen_fork.py", line 29, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+/home/lgy/installed/anacoda3/lib/python3.6/multiprocessing/semaphore_tracker.py:129: UserWarning: semaphore_tracker: There appear to be 16 leaked semaphores to clean up at shutdown
+  len(cache))
