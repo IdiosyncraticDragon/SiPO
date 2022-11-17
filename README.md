@@ -1,5 +1,5 @@
 # Stage-wise Grouping for Recurrent Neural Networks Pruning
-
+> Guiying Li, Peng Yang, Chao Qian, Richang Hong, and Ke Tang: Stage-Wise Magnitude-Based Pruning for Recurrent Neural Networks. IEEE Transactions on Neural Networks and Learning Systems (TNNLS), 2022. [Early access](https://ieeexplore.ieee.org/document/9808105)
 
 
 ## Introduction
