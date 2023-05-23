@@ -50,7 +50,7 @@ you can run the `setup.sh`.
 
    - raw data download: http://statmt.org/wmt14
 
-   - Pre-processed data used in this project:  [Web URL](https://pan.baidu.com/s/1tjknRHSZGTu4TiH5wrsAGw)
+   - Pre-processed data used in this project:  [BaiDu Drive](https://pan.baidu.com/s/1tjknRHSZGTu4TiH5wrsAGw), [Google Drive](https://drive.google.com/drive/folders/10mkzaOJggAlbOwZqaZ6R07VnIbEEPlWy?usp=sharing)
 
    The structure of folder should be:
 
@@ -88,13 +88,15 @@ you can run the `setup.sh`.
 
 1. Original models for LM and NMT
 
-   [Web URL](https://pan.baidu.com/s/1Z5H5SX64-aYHug3uho59CA)
+   [Baidu Drive](https://pan.baidu.com/s/1Z5H5SX64-aYHug3uho59CA)
+   [Google Drive](https://drive.google.com/drive/folders/1imkA2Fq5OyMhOxlcbgpymScbxCGBL1hF?usp=sharing)
 
 2. Pruned models of LM and NMT
 
-   [Web URL](https://pan.baidu.com/s/1A65qMcYm4VFr8xJ422oArA)
+   [Baidu Drive](https://pan.baidu.com/s/1A65qMcYm4VFr8xJ422oArA)
+   [Google Drive](https://drive.google.com/drive/folders/1RKpRbu_W7kCNK-qy1WeuUsEacLfXqRgx?usp=sharing)
 
-**Note:** put the downloaded models into the folder `model` under this project.
+**Note:** put the downloaded models into the folder `model` under this project. 
 
 
 
